@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio — Head Constable, IT & Communications (Telangana Police)
 
-## Getting Started
+A clean, modern and responsive single-page portfolio built with **Next.js (App Router)**,
+**TypeScript**, **Tailwind CSS** and **Lucide icons**. Designed for an experienced IT
+professional: subtle animations, dark/light mode, fast and lightweight, and ready for
+Vercel deployment.
 
-First, run the development server:
+> **Content policy:** every word on the site comes from one file —
+> [`src/content/profile.ts`](src/content/profile.ts). Nothing is invented. Replace the
+> `[placeholders]` with your real details, and never add police internal systems, IPs,
+> URLs, network/infrastructure details, case information, credentials, API keys or any
+> confidential information.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Tech stack
+
+| Layer     | Choice                                          |
+| --------- | ----------------------------------------------- |
+| Framework | Next.js 16 (App Router, TypeScript)             |
+| Styling   | Tailwind CSS v4                                 |
+| Icons     | `lucide-react` (+ inline brand SVGs)            |
+| Fonts     | Geist / Geist Mono via `next/font` (self-hosted)|
+| Deploy    | Vercel                                          |
+
+---
+
+## Project structure
+
+```text
+src/
+├── app/
+│   ├── layout.tsx        # Root layout: fonts, metadata, theme script, header/footer
+│   ├── page.tsx          # Single page — assembles all sections
+│   └── globals.css       # Design tokens, dark mode, subtle animation utilities
+├── components/
+│   ├── Header.tsx        # Sticky nav, active-section highlight, mobile menu (client)
+│   ├── ThemeToggle.tsx   # Dark/light toggle, persisted in localStorage (client)
+│   ├── Reveal.tsx        # Subtle scroll-in animation, respects reduced motion (client)
+│   ├── Section.tsx       # Shared section wrapper (eyebrow, title, description)
+│   ├── Footer.tsx
+│   ├── icons.tsx         # GitHub / LinkedIn marks
+│   └── sections/         # Hero, About, Experience, Skills, Projects,
+│                         # Certifications, Education, Achievements, Contact
+└── content/
+    └── profile.ts        # ⭐ ALL editable content lives here
+public/
+└── resume.pdf            # ⭐ Replace with your real resume (same file name)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing your content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Open `src/content/profile.ts`.
+2. Press `Ctrl+F` / `Cmd+F` and search for `[` to find every placeholder.
+3. Update:
+   - `site` — name, monogram, designation, department, organisation, location, email,
+     phone, GitHub, LinkedIn, `resumePath`, `url`, `defaultTheme`.
+   - `hero`, `about`, `experience`, `skills`, `projects`, `certifications`,
+     `trainings`, `education`, `achievements`, `contact` — one object per section.
+4. Delete any entry you do not want; the layout adapts automatically.
+5. Drop your resume at `public/resume.pdf`.
 
-## Learn More
+**Before publishing, double-check that no placeholder text and no confidential/internal
+detail remains.**
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run locally
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Other commands:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build   # production build (must succeed before deploying)
+npm run start   # serve the production build locally
+npm run lint    # ESLint
+```
+
+---
+
+## Deploy with GitHub + Vercel
+
+### 1. Push to GitHub
+
+```bash
+git init
+git add .
+git commit -m "Portfolio site"
+git branch -M main
+git remote add origin https://github.com/<your-username>/<repo-name>.git
+git push -u origin main
+```
+
+(The project is already a git repository and already ignores `.next/`, `node_modules/`,
+`.vercel/` and `.env*`.)
+
+### 2. Deploy on Vercel
+
+1. Go to [vercel.com/new](https://vercel.com/new) and sign in with GitHub.
+2. **Import** your repository.
+3. Vercel auto-detects **Next.js** — no build settings are required.
+   - Framework: Next.js
+   - Build command: `next build`
+   - Output: handled automatically
+4. Click **Deploy**. Done.
+
+### 3. After the first deploy
+
+1. Set the real domain in `site.url` (used for canonical/OG metadata), or update the
+   Vercel domain under *Project → Settings → Domains*.
+2. Push to `main` again — Vercel redeploys automatically on every push.
+
+---
+
+## Features
+
+- Single-page layout with smooth anchor navigation and active-section highlighting
+- Responsive from mobile to desktop (hamburger menu below `lg`)
+- Dark/light mode with no flash on load, persisted between visits
+- Subtle scroll-in animations that respect `prefers-reduced-motion`
+- Accessible: semantic sections, skip-to-content link, visible focus rings
+- Static output, no backend, no external API calls — trivial to host and audit
+
+## Content checklist
+
+- [ ] All `[placeholder]` values replaced
+- [ ] `public/resume.pdf` replaced with your real resume
+- [ ] GitHub / LinkedIn URLs updated
+- [ ] No internal system names, IPs, URLs, infrastructure, case data or credentials
+- [ ] `npm run build` passes
