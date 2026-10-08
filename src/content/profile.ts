@@ -87,7 +87,7 @@ export const site = {
   /** One-line positioning statement used in the hero and the page description. */
   tagline:
     "Head Constable in the IT & Communications (IT&C) domain of the Telangana Police, with [X+] years of hands-on experience supporting reliable, secure and practical technology for public safety.",
-  location: "[City, State]",
+  location: "Hyderabad, Telangana",
   email: "[your.email@example.com]",
   phone: "[+91 XXXXX XXXXX]",
   github: "https://github.com/[your-username]",
