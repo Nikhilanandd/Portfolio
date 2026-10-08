@@ -78,7 +78,7 @@ export type ContactLink = {
 
 export const site = {
   /** Your full name (also used in the page title and meta description). */
-  name: "[Your Full Name]",
+  name: "Gongidi Nikhil Anand",
   /** Short monogram shown in the header, e.g. "RS". */
   monogram: "[YN]",
   designation: "Head Constable",
